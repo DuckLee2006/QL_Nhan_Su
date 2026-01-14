@@ -15,14 +15,13 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        
-        ArrayList<NhanSu> cty = new ArrayList<>();
+        QLNS cty1 = new QLNS();
         Scanner sc = new Scanner(System.in);
         //build chuc nang 
         Map <Integer, Runnable> menu = new HashMap<>();
-        menu.put(1, () -> add(cty, sc));
-        menu.put(2, () -> show(cty));
-        menu.put(3, ()-> showSalary(cty, sc));
+        menu.put(1, () -> add(cty1, sc));
+        menu.put(2, () -> cty1.show());
+        menu.put(3, ()-> showSalary(cty1, sc));
         menu.put(0, () -> {
             System.out.println("Exit....");
             System.exit(0);
@@ -81,21 +80,20 @@ public class Main {
         return sb.toString().trim();
     }
     //menu
-    public static void showSalary(ArrayList<NhanSu> cty, Scanner sc){
+    public static void showSalary(QLNS cty, Scanner sc){
         System.out.println("enter the index of employee.");
         int n = Integer.parseInt(sc.nextLine());
-        NhanSu nvA = cty.get(n);
         System.out.println("Attendant day: ");
         double day = Double.parseDouble(sc.nextLine());
-        MothSalary(day, nvA);
+        cty.xemLuong(day, n);
         
     }
-    public static void show(ArrayList<NhanSu> cty){
-        for (NhanSu nva : cty){
-            nva.output();
-        }
-    }
-    public static void add(ArrayList<NhanSu> cty, Scanner sc){
+//    public static void show(ArrayList<NhanSu> cty){
+//        for (NhanSu nva : cty){
+//            nva.output();
+//        }
+//    }
+    public static void add(QLNS cty, Scanner sc){
         System.out.println("enter the number of employee.");
         int n = Integer.parseInt(sc.nextLine());
         for(int i =0;i<n;i++){
